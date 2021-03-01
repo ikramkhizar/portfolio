@@ -14,7 +14,8 @@ class QueryController extends Controller
      */
     public function index()
     {
-        //
+        $queries = Query::all();
+        return view('admin.queries.index')->with('queries', $queries);
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQueriesTable extends Migration
+class CreateUserProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateQueriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('queries', function (Blueprint $table) {
+        Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email');
-            $table->string('phone')->nullable();
-            $table->string('message');
-            $table->softDeletes();
+            $table->foreignId('user_id')->constrained();
+            $table->string('avatar')->nullable();
+            $table->string('designation')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateQueriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('queries');
+        Schema::dropIfExists('user_profiles');
     }
 }

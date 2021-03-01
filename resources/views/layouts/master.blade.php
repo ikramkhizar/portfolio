@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>Portfolio Dashboard</title>
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
@@ -93,15 +93,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('projects') }}" class="nav-link {{ (request()->is('admin/projects')) ? 'active' : '' }}">
+                            <a href="{{ route('projects.index') }}" class="nav-link {{ (request()->is('admin/projects*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>Projects</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('queries') }}" class="nav-link {{ (request()->is('admin/queries')) ? 'active' : '' }}">
+                            <a href="{{ route('queries.index') }}" class="nav-link {{ (request()->is('admin/queries*')) ? 'active' : '' }}">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>Queries</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('profile.edit', auth()->user()->id) }}" class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>Settings</p>
                             </a>
                         </li>
                     </ul>

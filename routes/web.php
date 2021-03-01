@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\QueryController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +28,8 @@ Auth::routes([
 
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
-	Route::get('/projects', function() {
-		return view('admin.projects.index');
-	})->name('projects');
-	Route::get('/queries', function() {
-		return view('admin.queries.index');
-	})->name('queries');
+	
+	Route::resource('projects', ProjectController::class)->except('show');
+	Route::resource('queries', QueryController::class)->only('index');
+	Route::resource('profile', UserProfileController::class)->only(['edit','update']);
 });
