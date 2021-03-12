@@ -45,6 +45,7 @@
                                         <th>Title</th>
                                         <th>Image</th>
                                         <th>Description</th>
+                                        <th>Position</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
@@ -60,6 +61,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $project->description }}</td>
+                                        <td>{{ $project->position }}</td>
                                         <td>{{ $project->created_at }}</td>
                                         <td>
                                             <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit</a>

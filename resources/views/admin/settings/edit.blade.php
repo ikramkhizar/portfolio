@@ -46,6 +46,10 @@
                                     value="{{ $profile->designation }}">
                                 </div>
                                 <div class="form-group">
+                                    <label>About</label>
+                                    <textarea name="about" class="form-control" rows="3" placeholder="Enter Your About">{{ $profile->about }}</textarea>
+                                </div>
+                                <div class="form-group">
                                     <label for="projectInputFile">Image</label>
                                     <div class="input-group">
                                         <div class="custom-file">

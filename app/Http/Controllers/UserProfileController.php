@@ -82,6 +82,7 @@ class UserProfileController extends Controller
 
             $profile->update([
                 'designation' => $request->designation ?? null,
+                'about' => $request->about ?? null,
                 'avatar' => $path ?? $profile->avatar
             ]);
 

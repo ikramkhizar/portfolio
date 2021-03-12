@@ -38,6 +38,8 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
+        $last_position = Project::latest()->first()->position ?? 0;
+
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('uploads');
         }
@@ -45,7 +47,8 @@ class ProjectController extends Controller
         Project::create([
             'title' => $request->title,
             'description' => $request->description ?? null,
-            'image' => $path ?? null
+            'image' => $path ?? null,
+            'position' => $request->position ?? ++$last_position
         ]);
 
         return redirect()->route('projects.index');

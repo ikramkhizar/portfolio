@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QueryController;
 use App\Http\Controllers\UserProfileController;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Auth::routes([
 	'register' => false, // Registration Routes...
@@ -26,10 +25,11 @@ Auth::routes([
   	'verify' => false, // Email Verification Routes...
 ]);
 
-Route::group(['prefix' => 'admin'], function () {
-	Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
-	
+Route::post('/queries', [QueryController::class, 'store'])->name('queries.store');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+	Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin');
 	Route::resource('projects', ProjectController::class)->except('show');
-	Route::resource('queries', QueryController::class)->only('index');
+	Route::resource('queries', QueryController::class)->only(['index']);
 	Route::resource('profile', UserProfileController::class)->only(['edit','update']);
 });

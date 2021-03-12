@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class QueryController extends Controller
 {
+    public function rules($request)
+    {
+        $rulesArr = [
+            'email' => 'required|email',
+            'message' => 'required'
+        ];
+
+        return $rulesArr;    
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +46,13 @@ class QueryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = \Validator::make($request->all(), $this->rules($request));
+
+        dd($request->old('email'));
+        
+        // if ($validator->fails()) {
+        //     return redirect()->route('home')->withErrors($validator);
+        // }
     }
 
     /**
